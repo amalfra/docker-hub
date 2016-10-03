@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 EPILOG = 'Docker Hub in your terminal'
-DESCRIPTION = ''
+DESCRIPTION = 'Access docker hub from your terminal'
 HELPMSGS = {
  'method': 'The api method to query {%(choices)s}',
  'orgname': 'Your orgname'

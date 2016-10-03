@@ -5,6 +5,7 @@ from ..consts import CONFIG_FILE
 
 
 class Config:
+    """ Simple management of JSON config file """
     def __init__(self):
         self.config_data = {}
         self.config_json_file = path.expanduser(CONFIG_FILE)
@@ -12,6 +13,7 @@ class Config:
             with open(self.config_json_file) as data_file:
                 self.config_data = json.load(data_file)
         else:
+            # Create config dir if it doesn't exist
             makedirs(path.dirname(self.config_json_file))
             with open(self.config_json_file, 'w+') as data_file:
                 data_file.write('{}')

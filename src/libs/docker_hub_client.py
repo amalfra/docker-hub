@@ -6,6 +6,7 @@ from config import Config
 
 
 class DockerHubClient:
+    """ Wrapper to communicate with docker hub API """
     def __init__(self):
         self.config = Config()
         self.auth_token = self.config.get('auth_token')
