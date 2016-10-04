@@ -15,6 +15,8 @@ def main():
         prog="docker-hub", description=DESCRIPTION, epilog=EPILOG,
              formatter_class=argparse.RawTextHelpFormatter)
     org_name_arg = parser.add_argument('--orgname', help=HELPMSGS['orgname'])
+    display_format = parser.add_argument('--format', help=HELPMSGS['format'],
+                                         choices=VALID_DISPLAY_FORMATS)
     parser.add_argument('method', type=str.lower, choices=VALID_METHODS,
                         nargs=1, help=HELPMSGS['method'], action=CondAction,
                         to_be_required=[org_name_arg])

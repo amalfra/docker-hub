@@ -27,6 +27,23 @@ def print_table(header=[], rows=[]):
     print tabulate(rows, headers=header, tablefmt='grid')
 
 
+def print_result(format, rows=[], header=[]):
+    """ Print result in format specified by user """
+    if not format:
+        format = 'table'
+
+    if format == 'table':
+        print_header('Found %s results' % len(rows))
+        print_table(header, rows)
+    else:
+        json_result = []
+        for row in rows:
+            json_dict = {}
+            json_dict = dict(zip(header, row))
+            json_result.append(json_dict)
+        print json_result
+
+
 class CondAction(argparse.Action):
     """ A custom argparse action to support required arguments """
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
