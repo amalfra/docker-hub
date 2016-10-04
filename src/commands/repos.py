@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from ..libs.utils import *
-from datetime import datetime
+import dateutil.parser
 
 
 def run(docker_hub_client, args):
@@ -10,9 +10,13 @@ def run(docker_hub_client, args):
         if resp['content']['count'] > 0:
             rows = []
             for repo in resp['content']['results']:
+                formatted_date = dateutil.parser.parse(repo['last_updated'])
+                formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
                 rows.append([repo['name'], repo['description'],
-                            repo['star_count'], repo['pull_count']])
-            header = ['Name', 'Description', 'Star count', 'Pull count']
+                            repo['star_count'], repo['pull_count'],
+                            formatted_date])
+            header = ['Name', 'Description', 'Star count', 'Pull count',
+                      'Last updated']
             print_result(args.format, rows, header)
     else:
         print 'Error fetching repos for: ' + args.orgname

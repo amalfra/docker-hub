@@ -15,7 +15,7 @@ with open("README.md", "rb") as f:
 
 setup(
     name="docker-hub",
-    packages=["src", "requests", "tabulate"],
+    packages=["src", "requests", "tabulate", "python-dateutil"],
     entry_points={
         "console_scripts": ['docker-hub=src.__main__:main']
     },
