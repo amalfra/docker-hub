@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 import sys
 import argparse
+import math
 from tabulate import tabulate
+from ..consts import PER_PAGE
 
 
 def user_input(text=''):
@@ -27,13 +29,15 @@ def print_table(header=[], rows=[]):
     print tabulate(rows, headers=header, tablefmt='grid')
 
 
-def print_result(format, rows=[], header=[]):
+def print_result(format, count=0, page=1, rows=[], header=[]):
     """ Print result in format specified by user """
     if not format:
         format = 'table'
 
     if format == 'table':
-        print_header('Found %s results' % len(rows))
+        total_pages = ((count - 1)/PER_PAGE) + 1
+        print_header('Found %s results. On page %s of %s' %
+                     (count, page, total_pages))
         print_table(header, rows)
     else:
         json_result = []

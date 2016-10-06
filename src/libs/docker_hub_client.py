@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import json
 import requests
-from ..consts import DOCKER_HUB_API_ENDPOINT
+from ..consts import DOCKER_HUB_API_ENDPOINT, PER_PAGE
 from config import Config
 
 
@@ -40,5 +40,7 @@ class DockerHubClient:
     def get_token(self):
         return self.auth_token
 
-    def get_repos(self, org):
-        return self.do_get(DOCKER_HUB_API_ENDPOINT + 'repositories/' + org)
+    def get_repos(self, org, page=1):
+        url = DOCKER_HUB_API_ENDPOINT + 'repositories/' + org + '/?page=' \
+         + str(page) + '&page_size=' + str(PER_PAGE)
+        return self.do_get(url)

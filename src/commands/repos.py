@@ -5,7 +5,7 @@ import dateutil.parser
 
 def run(docker_hub_client, args):
     """ The command to list repos of given org from docker hub """
-    resp = docker_hub_client.get_repos(args.orgname)
+    resp = docker_hub_client.get_repos(args.orgname, args.page)
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
             rows = []
@@ -19,6 +19,7 @@ def run(docker_hub_client, args):
                             formatted_date])
             header = ['Name', 'Description', 'Star count', 'Pull count',
                       'Last updated']
-            print_result(args.format, rows, header)
+            print_result(args.format, resp['content']['count'], args.page,
+                         rows, header)
     else:
         print 'Error fetching repos for: ' + args.orgname
