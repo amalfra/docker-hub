@@ -10,8 +10,10 @@ def run(docker_hub_client, args):
         if resp['content']['count'] > 0:
             rows = []
             for repo in resp['content']['results']:
-                formatted_date = dateutil.parser.parse(repo['last_updated'])
-                formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
+                formatted_date = ''
+                if repo['last_updated']:
+                    formatted_date = dateutil.parser.parse(repo['last_updated'])
+                    formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
                 rows.append([repo['name'], repo['description'],
                             repo['star_count'], repo['pull_count'],
                             formatted_date])
