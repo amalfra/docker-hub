@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sys
 import argparse
+import getpass
 import math
 from tabulate import tabulate
 from ..consts import PER_PAGE
@@ -11,10 +12,13 @@ except NameError:
     pass
 
 
-def user_input(text=''):
+def user_input(text='', hide_input=False):
     """ Nice little function to read text inputs from stdin """
     try:
-        inp = input(text)
+        if hide_input:
+            inp = getpass.getpass(text)
+        else:
+            inp = input(text)
     except KeyboardInterrupt:
         sys.exit(0)
     except:

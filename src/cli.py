@@ -38,7 +38,7 @@ def main():
             while not username:
                 username = user_input('Enter docker hub username: ')
             while not password:
-                password = user_input('Enter docker hub password: ')
+                password = user_input('Enter docker hub password: ', True)
 
             if not docker_hub_client.login(username, password):
                 print('Error logging in to docker hub.')
