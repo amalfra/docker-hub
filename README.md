@@ -24,16 +24,32 @@ If you are already loggedin using `docker login` command, then the token in dock
 To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` parameter.  
 eg: Get repos in organization named "docker"
 ```sh
-docker-hub repos --orgname=docker
+docker-hub repos --orgname docker
 ```
 
 ##### Notes:
-Only 15 results for any query are displayed at once. You can fetch remaning pages by passing `--page` parameter. 
+* Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter. 
 
-eg: Get 3rd page
-```sh
-docker-hub repos --orgname=docker --page=3
-```
+  eg: Get 3rd page
+  ```sh
+  docker-hub repos --orgname docker --page 3
+  ```
+* The results can be displayed in 2 formats:
+  1. json - Displays result as JSON string.
+  2. table - Displays results as nicely formatted table.
+  
+  `--format` parameter can be used to specify the format in which result must be displayed.
+  
+  eg:
+  * Display in json format
+  ```sh
+  docker-hub repos --orgname docker --format json
+  ```
+
+  * Display in table format
+  ```sh
+  docker-hub repos --orgname docker --format table
+  ```
 
 ## Development
 Questions, problems or suggestions? Please post them on the [issue tracker](https://github.com/amalfra/docker-hub/issues).
