@@ -43,6 +43,8 @@ def main():
             if not docker_hub_client.login(username, password):
                 print('Error logging in to docker hub.')
                 sys.exit(1)
+            else:
+                print("Login Succeeded\n")
 
     args = parser.parse_args()
     # Execute the command provided by user
