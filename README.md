@@ -17,7 +17,23 @@ pip3 install docker-hub
 ```
 
 ## Usage
-**wip**
+##### 1. Authenticate with Docker Hub
+If you are already loggedin using `docker login` command, then the token in docker engine config will be used. Otherwise you will be prompted to enter username and password. 
+
+##### 2. Querying an organization for repositories
+To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` parameter.  
+eg: Get repos in organization named "docker"
+```sh
+docker-hub repos --orgname=docker
+```
+
+##### Notes:
+Only 15 results for any query are displayed at once. You can fetch remaning pages by passing `--page` parameter. 
+
+eg: Get 3rd page
+```sh
+docker-hub repos --orgname=docker --page=3
+```
 
 ## Development
 Questions, problems or suggestions? Please post them on the [issue tracker](https://github.com/amalfra/docker-hub/issues).
