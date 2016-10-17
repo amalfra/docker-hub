@@ -3,10 +3,10 @@ import sys
 import argparse
 import importlib
 from os import path
-from consts import *
-from libs.utils import *
-from libs.docker_client import DockerClient
-from libs.docker_hub_client import DockerHubClient
+from .consts import *
+from .libs.utils import *
+from .libs.docker_client import DockerClient
+from .libs.docker_hub_client import DockerHubClient
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
                 password = user_input('Enter docker hub password: ')
 
             if not docker_hub_client.login(username, password):
-                print 'Error logging in to docker hub.'
+                print('Error logging in to docker hub.')
                 sys.exit(1)
 
     args = parser.parse_args()

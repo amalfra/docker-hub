@@ -22,4 +22,4 @@ def run(docker_hub_client, args):
             print_result(args.format, resp['content']['count'], args.page,
                          rows, header)
     else:
-        print 'Error fetching repos for: ' + args.orgname
+        print('Error fetching repos for: ' + args.orgname)

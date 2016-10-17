@@ -14,7 +14,10 @@ class Config:
                 self.config_data = json.load(data_file)
         else:
             # Create config dir if it doesn't exist
-            makedirs(path.dirname(self.config_json_file))
+            config_dir = path.dirname(self.config_json_file)
+            if not path.isdir(config_dir):
+                makedirs(config_dir)
+
             with open(self.config_json_file, 'w+') as data_file:
                 data_file.write('{}')
 
