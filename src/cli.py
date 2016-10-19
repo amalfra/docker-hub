@@ -15,13 +15,18 @@ def main():
         prog="docker-hub", description=DESCRIPTION, epilog=EPILOG,
              formatter_class=argparse.RawTextHelpFormatter)
     org_name_arg = parser.add_argument('--orgname', help=HELPMSGS['orgname'])
+    repo_name_arg = parser.add_argument('--reponame', help=HELPMSGS['reponame'])
     page = parser.add_argument('--page', nargs='?', default=1,
                                help=HELPMSGS['page'])
     display_format = parser.add_argument('--format', help=HELPMSGS['format'],
                                          choices=VALID_DISPLAY_FORMATS)
+    required_args = {
+        'repos': [org_name_arg],
+        'tags': [org_name_arg, repo_name_arg]
+    }
     parser.add_argument('method', type=str.lower, choices=VALID_METHODS,
                         nargs=1, help=HELPMSGS['method'], action=CondAction,
-                        to_be_required=[org_name_arg])
+                        to_be_required=required_args)
 
     # Print help if no arguments given
     if len(sys.argv) < 2:

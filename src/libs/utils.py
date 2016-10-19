@@ -57,6 +57,16 @@ def print_result(format, count=0, page=1, rows=[], header=[]):
         print(json_result)
 
 
+def readableMemoryFormat(size):
+    if (size == 0):
+        return '0B'
+    size_name = ("KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    i = int(math.floor(math.log(size, 1024)))
+    p = math.pow(1024, i)
+    s = round(size/p, 2)
+    return '%s %s' % (s, size_name[i])
+
+
 class CondAction(argparse.Action):
     """ A custom argparse action to support required arguments """
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
@@ -65,7 +75,8 @@ class CondAction(argparse.Action):
         self.make_required = x
 
     def __call__(self, parser, namespace, values, option_string=None):
-        for x in self.make_required:
+        options_required = self.make_required[values]
+        for x in options_required:
             x.required = True
         try:
             setattr(namespace, self.dest, values)

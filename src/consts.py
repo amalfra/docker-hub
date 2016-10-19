@@ -4,10 +4,11 @@ DESCRIPTION = 'Access docker hub from your terminal'
 HELPMSGS = {
  'method': 'The api method to query {%(choices)s}',
  'orgname': 'Your orgname',
+ 'reponame': 'The name of repository',
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch'
 }
-VALID_METHODS = ['repos']
+VALID_METHODS = ['repos', 'tags']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'

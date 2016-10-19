@@ -45,3 +45,8 @@ class DockerHubClient:
         url = '{0}repositories/{1}/?page={2}&page_size={3}'. \
                format(DOCKER_HUB_API_ENDPOINT, org, page, PER_PAGE)
         return self.do_request(url)
+
+    def get_tags(self, org, repo, page=1):
+        url = '{0}repositories/{1}/{2}/tags?page={3}&page_size={4}'. \
+               format(DOCKER_HUB_API_ENDPOINT, org, repo, page, PER_PAGE)
+        return self.do_request(url)
