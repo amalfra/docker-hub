@@ -2,7 +2,7 @@ Docker Hub CLI
 ========
 [![PyPI version](https://badge.fury.io/py/docker-hub.svg)](https://badge.fury.io/py/docker-hub)
 
-[![asciicast](https://asciinema.org/a/88278.png)](https://asciinema.org/a/88278)
+[![asciicast](https://asciinema.org/a/89901.png)](https://asciinema.org/a/89901)
 
 A CLI tool to access Docker Hub from your terminal.
 
@@ -25,6 +25,13 @@ To query repositories in an organization use `repos` argument. The organization 
 eg: Get repos in organization named "docker"
 ```sh
 docker-hub repos --orgname docker
+```
+
+##### 3. Querying the tags of a repository
+To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.  
+eg: Get tags of repository "ucp" in organization named "docker"
+```sh
+docker-hub tags --orgname docker --reponame ucp
 ```
 
 ##### Notes:
