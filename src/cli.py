@@ -15,7 +15,8 @@ def main():
         prog="docker-hub", description=DESCRIPTION, epilog=EPILOG,
              formatter_class=argparse.RawTextHelpFormatter)
     org_name_arg = parser.add_argument('--orgname', help=HELPMSGS['orgname'])
-    repo_name_arg = parser.add_argument('--reponame', help=HELPMSGS['reponame'])
+    repo_name_arg = parser.add_argument('--reponame',
+                                        help=HELPMSGS['reponame'])
     page = parser.add_argument('--page', nargs='?', default=1,
                                help=HELPMSGS['page'])
     display_format = parser.add_argument('--format', help=HELPMSGS['format'],
