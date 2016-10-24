@@ -5,10 +5,11 @@ HELPMSGS = {
  'method': 'The api method to query {%(choices)s}',
  'orgname': 'Your orgname',
  'reponame': 'The name of repository',
+ 'username': 'The Docker Hub username',
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch'
 }
-VALID_METHODS = ['repos', 'tags']
+VALID_METHODS = ['repos', 'tags', 'users']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'

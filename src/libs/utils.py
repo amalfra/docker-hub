@@ -38,15 +38,18 @@ def print_table(header=[], rows=[]):
     print(tabulate(rows, headers=header, tablefmt='grid'))
 
 
-def print_result(format, count=0, page=1, rows=[], header=[]):
+def print_result(format, rows=[], header=[], count=0, page=1, heading=False):
     """ Print result in format specified by user """
     if not format:
         format = 'table'
 
     if format == 'table':
         total_pages = int(((count - 1)/PER_PAGE) + 1)
-        print_header('Found %s results. On page %s of %s' %
-                     (count, page, total_pages))
+        if heading:
+            print_header(heading)
+        else:
+            print_header('Found %s results. On page %s of %s' %
+                         (count, page, total_pages))
         print_table(header, rows)
     else:
         json_result = []

@@ -20,8 +20,8 @@ def run(docker_hub_client, args):
                 formatted_size = readableMemoryFormat(size_in_kb)
                 rows.append([repo['name'], formatted_size, formatted_date])
             header = ['Name', 'Size', 'Last updated']
-            print_result(args.format, resp['content']['count'], args.page,
-                         rows, header)
+            print_result(args.format, rows, header, resp['content']['count'],
+                         args.page)
     else:
         print('Error fetching tags for: {0}/{1}'.
               format(args.orgname, args.reponame))

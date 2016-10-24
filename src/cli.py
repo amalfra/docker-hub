@@ -14,6 +14,7 @@ def main():
     parser = argparse.ArgumentParser(
         prog="docker-hub", description=DESCRIPTION, epilog=EPILOG,
              formatter_class=argparse.RawTextHelpFormatter)
+    username_arg = parser.add_argument('--username', help=HELPMSGS['username'])
     org_name_arg = parser.add_argument('--orgname', help=HELPMSGS['orgname'])
     repo_name_arg = parser.add_argument('--reponame',
                                         help=HELPMSGS['reponame'])
@@ -23,7 +24,8 @@ def main():
                                          choices=VALID_DISPLAY_FORMATS)
     required_args = {
         'repos': [org_name_arg],
-        'tags': [org_name_arg, repo_name_arg]
+        'tags': [org_name_arg, repo_name_arg],
+        'users': [username_arg]
     }
     parser.add_argument('method', type=str.lower, choices=VALID_METHODS,
                         nargs=1, help=HELPMSGS['method'], action=CondAction,

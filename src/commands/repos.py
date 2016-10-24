@@ -19,7 +19,7 @@ def run(docker_hub_client, args):
                             formatted_date])
             header = ['Name', 'Description', 'Star count', 'Pull count',
                       'Last updated']
-            print_result(args.format, resp['content']['count'], args.page,
-                         rows, header)
+            print_result(args.format, rows, header, resp['content']['count'],
+                         args.page)
     else:
         print('Error fetching repos for: ' + args.orgname)
