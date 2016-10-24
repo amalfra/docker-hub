@@ -51,7 +51,6 @@ class DockerHubClient:
                format(DOCKER_HUB_API_ENDPOINT, org, repo, page, PER_PAGE)
         return self.do_request(url)
 
-    def get_users(self, username, page=1):
-        url = '{0}users/{1}?page={2}&page_size={3}'. \
-               format(DOCKER_HUB_API_ENDPOINT, username, page, PER_PAGE)
+    def get_users(self, username):
+        url = '{0}users/{1}'.format(DOCKER_HUB_API_ENDPOINT, username)
         return self.do_request(url)

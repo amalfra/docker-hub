@@ -5,7 +5,7 @@ import dateutil.parser
 
 def run(docker_hub_client, args):
     """ The command to user profile from docker hub """
-    resp = docker_hub_client.get_users(args.username, args.page)
+    resp = docker_hub_client.get_users(args.username)
     if resp['code'] == 200:
         rows = []
         for key in resp['content']:

@@ -34,6 +34,13 @@ eg: Get tags of repository "ucp" in organization named "docker"
 docker-hub tags --orgname docker --reponame ucp
 ```
 
+##### 4. Querying a user profile
+To query a user profile use `users` argument. The username to query can be passed as `--username` parameter.
+eg: Get profile of user named "docker"
+```sh
+docker-hub users --username docker
+```
+
 ##### Notes:
 * Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter. 
 
