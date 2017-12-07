@@ -41,16 +41,21 @@ class DockerHubClient:
     def get_token(self):
         return self.auth_token
 
-    def get_repos(self, org, page=1):
+    def get_repos(self, org, page=1, per_page=PER_PAGE):
         url = '{0}repositories/{1}/?page={2}&page_size={3}'. \
-               format(DOCKER_HUB_API_ENDPOINT, org, page, PER_PAGE)
+               format(DOCKER_HUB_API_ENDPOINT, org, page, per_page)
         return self.do_request(url)
 
-    def get_tags(self, org, repo, page=1):
+    def get_tags(self, org, repo, page=1, per_page=PER_PAGE):
         url = '{0}repositories/{1}/{2}/tags?page={3}&page_size={4}'. \
-               format(DOCKER_HUB_API_ENDPOINT, org, repo, page, PER_PAGE)
+               format(DOCKER_HUB_API_ENDPOINT, org, repo, page, per_page)
         return self.do_request(url)
 
     def get_users(self, username):
         url = '{0}users/{1}'.format(DOCKER_HUB_API_ENDPOINT, username)
+        return self.do_request(url)
+
+    def get_buildhistory(self, org, repo, page=1, per_page=PER_PAGE):
+        url = '{0}repositories/{1}/{2}/buildhistory?page={3}&page_size={4}'. \
+                format(DOCKER_HUB_API_ENDPOINT, org, repo, page, per_page)
         return self.do_request(url)

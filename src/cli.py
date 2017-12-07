@@ -24,6 +24,7 @@ def main():
                                          choices=VALID_DISPLAY_FORMATS)
     required_args = {
         'repos': [org_name_arg],
+        'queue': [org_name_arg],
         'tags': [org_name_arg, repo_name_arg],
         'users': [username_arg]
     }

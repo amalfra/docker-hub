@@ -18,17 +18,17 @@ pip3 install docker-hub
 
 ## Usage
 ##### 1. Authenticate with Docker Hub
-If you are already loggedin using `docker login` command, then the token in docker engine config will be used. Otherwise you will be prompted to enter username and password. 
+If you are already loggedin using `docker login` command, then the token in docker engine config will be used. Otherwise you will be prompted to enter username and password.
 
 ##### 2. Querying an organization for repositories
-To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` parameter.  
+To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` parameter.
 eg: Get repos in organization named "docker"
 ```sh
 docker-hub repos --orgname docker
 ```
 
 ##### 3. Querying the tags of a repository
-To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.  
+To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
 eg: Get tags of repository "ucp" in organization named "docker"
 ```sh
 docker-hub tags --orgname docker --reponame ucp
@@ -41,8 +41,15 @@ eg: Get profile of user named "docker"
 docker-hub users --username docker
 ```
 
+##### 5. Querying an organization for auto-build queue
+To query the auto-build repositories with pending builds use the `queue` argument. The organization to query can be passed as `--orgname` parameter.
+eg: Get the building queue for organization named "docker"
+```sh
+docker-hub queue --orgname docker
+```
+
 ##### Notes:
-* Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter. 
+* Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter.
 
   eg: Get 3rd page
   ```sh
@@ -51,9 +58,9 @@ docker-hub users --username docker
 * The results can be displayed in 2 formats:
   1. json - Displays result as JSON string.
   2. table - Displays results as nicely formatted table.
-  
+
   `--format` parameter can be used to specify the format in which result must be displayed.
-  
+
   eg:
   * Display in json format
   ```sh

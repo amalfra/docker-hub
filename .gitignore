@@ -8,6 +8,7 @@
 *.egg-info
 dist
 build
+include
 eggs
 .eggs
 parts
@@ -24,6 +25,7 @@ pyvenv*/
 
 # Installer logs
 pip-log.txt
+pip-selfcheck.json
 
 # Unit test / coverage reports
 .coverage
