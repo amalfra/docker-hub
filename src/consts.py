@@ -7,7 +7,8 @@ HELPMSGS = {
  'reponame': 'The name of repository',
  'username': 'The Docker Hub username',
  'format': 'You can dispaly results in %(choices)s formats',
- 'page': 'The page of result to fetch'
+ 'page': 'The page of result to fetch',
+ 'all': 'Show all'
 }
 VALID_METHODS = ['repos', 'tags', 'users', 'queue']
 VALID_DISPLAY_FORMATS = ['table', 'json']
@@ -17,6 +18,7 @@ DOCKER_HUB_API_ENDPOINT = 'https://hub.docker.com/v2/'
 PER_PAGE = 15
 
 BUILD_STATUS = {
+    -4: "canceled",
     -2: "exception",
     -1: "error",
     0: "pending",
