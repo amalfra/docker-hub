@@ -5,8 +5,7 @@ import dateutil.parser
 
 
 def repos(docker_hub_client, args):
-    """ Generate valid repos
-    """
+    """ Generate valid repos """
     for page in range(1, 100):
         resp = docker_hub_client.get_repos(args.orgname, page, per_page=100)
         if not resp['code'] == 200:

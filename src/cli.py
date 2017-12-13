@@ -22,6 +22,7 @@ def main():
                                help=HELPMSGS['page'])
     display_format = parser.add_argument('--format', help=HELPMSGS['format'],
                                          choices=VALID_DISPLAY_FORMATS)
+
     required_args = {
         'repos': [org_name_arg],
         'queue': [org_name_arg],
