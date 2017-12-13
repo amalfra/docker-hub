@@ -20,8 +20,6 @@ def main():
                                         help=HELPMSGS['reponame'])
     page = parser.add_argument('--page', nargs='?', default=1,
                                help=HELPMSGS['page'])
-    all_arg = parser.add_argument('--all', action='store_true',
-                                  help=HELPMSGS['all'])
     display_format = parser.add_argument('--format', help=HELPMSGS['format'],
                                          choices=VALID_DISPLAY_FORMATS)
     required_args = {
