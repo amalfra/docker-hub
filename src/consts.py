@@ -9,7 +9,7 @@ HELPMSGS = {
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch'
 }
-VALID_METHODS = ['repos', 'tags', 'users', 'queue']
+VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'
@@ -17,6 +17,7 @@ DOCKER_HUB_API_ENDPOINT = 'https://hub.docker.com/v2/'
 PER_PAGE = 15
 
 BUILD_STATUS = {
+    -4: "canceled",
     -2: "exception",
     -1: "error",
     0: "pending",

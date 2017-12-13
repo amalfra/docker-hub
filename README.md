@@ -41,12 +41,21 @@ eg: Get profile of user named "docker"
 docker-hub users --username docker
 ```
 
-##### 5. Querying an organization for auto-build queue
+##### 5. Querying the auto-builds of a repository
+To query auto-builds of a repository user `builds` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
+eg: Get build of repository "ucp" in organization named "docker"
+```sh
+docker-hub builds --orgname docker --reponame ucp
+```
+
+##### 6. Querying an organization for auto-build queue
 To query the auto-build repositories with pending builds use the `queue` argument. The organization to query can be passed as `--orgname` parameter.
 eg: Get the building queue for organization named "docker"
 ```sh
 docker-hub queue --orgname docker
 ```
+
+
 
 ##### Notes:
 * Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter.

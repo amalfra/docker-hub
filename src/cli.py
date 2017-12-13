@@ -26,6 +26,7 @@ def main():
         'repos': [org_name_arg],
         'queue': [org_name_arg],
         'tags': [org_name_arg, repo_name_arg],
+        'builds': [org_name_arg, repo_name_arg],
         'users': [username_arg]
     }
     parser.add_argument('method', type=str.lower, choices=VALID_METHODS,
