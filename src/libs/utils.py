@@ -44,13 +44,16 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False):
         format = 'table'
 
     if format == 'table':
-        total_pages = int(((count - 1)/PER_PAGE) + 1)
-        if heading:
-            print_header(heading)
+        if count == 0:
+            print 'No results found for your query.'
         else:
-            print_header('Found %s results. On page %s of %s' %
-                         (count, page, total_pages))
-        print_table(header, rows)
+            total_pages = int(((count - 1)/PER_PAGE) + 1)
+            if heading:
+                print_header(heading)
+            else:
+                print_header('Found %s results. On page %s of %s' %
+                             (count, page, total_pages))
+            print_table(header, rows)
     else:
         json_result = []
         for row in rows:
