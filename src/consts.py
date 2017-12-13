@@ -10,7 +10,7 @@ HELPMSGS = {
  'page': 'The page of result to fetch',
  'status': 'To query for only builds with specified status'
 }
-VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue']
+VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'

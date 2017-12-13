@@ -81,9 +81,10 @@ class CondAction(argparse.Action):
         self.make_required = x
 
     def __call__(self, parser, namespace, values, option_string=None):
-        options_required = self.make_required[values]
-        for x in options_required:
-            x.required = True
+        if values in self.make_required:
+            options_required = self.make_required[values]
+            for x in options_required:
+                x.required = True
         try:
             setattr(namespace, self.dest, values)
             return super(CondAction, self).__call__(parser, namespace, values,
