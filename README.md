@@ -42,7 +42,7 @@ docker-hub users --username docker
 ```
 
 ##### 5. Querying the auto-builds of a repository
-To query auto-builds of a repository user `builds` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
+To query auto-builds of a repository use `builds` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
 eg: Get build of repository "ucp" in organization named "docker"
 ```sh
 docker-hub builds --orgname docker --reponame ucp
