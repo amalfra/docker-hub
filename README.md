@@ -21,44 +21,42 @@ pip3 install docker-hub
 If you are already loggedin using `docker login` command, then the token in docker engine config will be used. Otherwise you will be prompted to enter username and password.
 
 ##### 2. Querying an organization for repositories
-To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` parameter.
+To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` or `-o` parameter.
 eg: Get repos in organization named "docker"
 ```sh
 docker-hub repos --orgname docker
 ```
 
 ##### 3. Querying the tags of a repository
-To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
+To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` or `-o` parameter. The repository to query can be passed as `--reponame` or `-r` parameter.
 eg: Get tags of repository "ucp" in organization named "docker"
 ```sh
 docker-hub tags --orgname docker --reponame ucp
 ```
 
 ##### 4. Querying a user profile
-To query a user profile use `users` argument. The username to query can be passed as `--username` parameter.
+To query a user profile use `users` argument. The username to query can be passed as `--username` or `-u` parameter.
 eg: Get profile of user named "docker"
 ```sh
 docker-hub users --username docker
 ```
 
 ##### 5. Querying the auto-builds of a repository
-To query auto-builds of a repository use `builds` argument. The organization of repository can be passed as `--orgname` parameter. The repository to query can be passed as `--reponame` parameter.
+To query auto-builds of a repository use `builds` argument. The organization of repository can be passed as `--orgname` or `-o` parameter. The repository to query can be passed as `--reponame` or `-r` parameter.
 eg: Get build of repository "ucp" in organization named "docker"
 ```sh
 docker-hub builds --orgname docker --reponame ucp
 ```
 
 ##### 6. Querying an organization for auto-build queue
-To query the auto-build repositories with pending builds use the `queue` argument. The organization to query can be passed as `--orgname` parameter.
+To query the auto-build repositories with pending builds use the `queue` argument. The organization to query can be passed as `--orgname` or `-o` parameter.
 eg: Get the building queue for organization named "docker"
 ```sh
 docker-hub queue --orgname docker
 ```
 
-
-
 ##### Notes:
-* Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` parameter.
+* Only 15 results will be displayed at once. You can fetch remaining pages by passing `--page` or `-p` parameter.
 
   eg: Get 3rd page
   ```sh
@@ -68,7 +66,7 @@ docker-hub queue --orgname docker
   1. json - Displays result as JSON string.
   2. table - Displays results as nicely formatted table.
 
-  `--format` parameter can be used to specify the format in which result must be displayed.
+  `--format` or `-f` parameter can be used to specify the format in which result must be displayed.
 
   eg:
   * Display in json format
