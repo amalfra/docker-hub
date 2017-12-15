@@ -3,5 +3,5 @@ from .. import __version__
 
 
 def run(docker_hub_client, args):
-    """ The command to list repos of given org from docker hub """
+    """ The command to print current version """
     print('docker-hub ' + __version__)
