@@ -46,6 +46,8 @@ setup(
     packages=find_packages(exclude=['tests.*', 'tests']),
     include_package_data=True,
     install_requires=install_requires,
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': ['docker-hub=src.__main__:main']
     },
