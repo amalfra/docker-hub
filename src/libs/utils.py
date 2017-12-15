@@ -45,7 +45,7 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False):
 
     if format == 'table':
         if count == 0:
-            print 'No results found for your query.'
+            print('No results found for your query.')
         else:
             total_pages = int(((count - 1)/PER_PAGE) + 1)
             if heading:

@@ -16,6 +16,6 @@ def run(docker_hub_client, args):
                 resp['content'][key] = formatted_date
             rows.append([key, resp['content'][key]])
         heading = "User profile of %s" % (args.username)
-        print_result(args.format, rows, heading=heading)
+        print_result(args.format, rows, heading=heading, count=1)
     else:
         print('Error fetching profile for: ' + args.username)
