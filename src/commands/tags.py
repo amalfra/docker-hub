@@ -4,7 +4,15 @@ import dateutil.parser
 
 
 def run(docker_hub_client, args):
-    """ The command to list tags for given repo on docker hub """
+    """ The command to list tags for given repo on docker hub
+
+        >>> from ..tests.docker_hub_client import TestingDockerHubClient
+        >>> from collections import namedtuple
+        >>> args = namedtuple('args', 'orgname reponame page')
+        >>> docker_hub_client = TestingDockerHubClient()
+        >>> run(docker_hub_client,
+        ...     args(orgname='docker', reponame='docker', page='1'))
+    """
     resp = docker_hub_client.get_tags(args.orgname, args.reponame, args.page)
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
