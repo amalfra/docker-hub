@@ -2,7 +2,7 @@ Docker Hub CLI
 ========
 [![PyPI version](https://badge.fury.io/py/docker-hub.svg)](https://badge.fury.io/py/docker-hub)
 [![Build Status](https://travis-ci.org/amalfra/docker-hub.svg?branch=master)](https://travis-ci.org/amalfra/docker-hub)
-[![Coverage](https://coveralls.io/repos/github/eea/docker-hub/badge.svg)](https://coveralls.io/github/eea/docker-hub)
+[![Coverage Status](https://coveralls.io/repos/github/amalfra/docker-hub/badge.svg?branch=master)](https://coveralls.io/github/amalfra/docker-hub?branch=master)
 
 [![asciicast](https://asciinema.org/a/89901.png)](https://asciinema.org/a/89901)
 
