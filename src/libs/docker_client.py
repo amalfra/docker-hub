@@ -16,7 +16,7 @@ class DockerClient:
 
     def get_auth_token(self):
         """ Just get the auth token from docker config file """
-        if self.docker_config_data['auths']:
+        if 'auths' in self.docker_config_data:
             for auth in self.docker_config_data['auths']:
                 if self.docker_config_data['auths'][auth]['auth']:
                     return self.docker_config_data['auths'][auth]['auth']
