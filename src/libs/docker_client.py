@@ -18,7 +18,7 @@ class DockerClient:
         """ Just get the auth token from docker config file """
         if 'auths' in self.docker_config_data:
             for auth in self.docker_config_data['auths']:
-                if self.docker_config_data['auths'][auth]['auth']:
+                if 'auth' in self.docker_config_data['auths'][auth]:
                     return self.docker_config_data['auths'][auth]['auth']
 
         return False

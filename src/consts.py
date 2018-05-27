@@ -8,9 +8,12 @@ HELPMSGS = {
  'username': 'The Docker Hub username',
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch',
- 'status': 'To query for only builds with specified status'
+ 'status': 'To query for only builds with specified status',
+ 'login': 'Authenticate with Docker Hub'
 }
-VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version']
+VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version',
+                 'login']
+NO_TIP_METHODS = ['login', 'version']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'
@@ -33,3 +36,9 @@ BUILD_STATUS = {
     9: 'pushed',
     10: 'done'
 }
+
+TIPS = [
+    'You are not authenticated with Docker Hub. Hence only public \
+resoruces will be fetched. Try authenticating using `docker login` or \
+`docker-hub login` command to see more.'
+]

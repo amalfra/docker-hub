@@ -45,22 +45,13 @@ def main():
     docker_client = DockerClient()
     docker_hub_client = DockerHubClient()
     # Check if an auth token is present
-    if not docker_client.get_auth_token():
-        if not docker_hub_client.get_token():
-            username = None
-            password = None
-            while not username:
-                username = user_input('Enter docker hub username: ')
-            while not password:
-                password = user_input('Enter docker hub password: ', True)
-
-            if not docker_hub_client.login(username, password):
-                print('Error logging in to docker hub.')
-                sys.exit(1)
-            else:
-                print("Login Succeeded\n")
+    login_token_present = docker_client.get_auth_token() or \
+        docker_hub_client.get_token()
 
     args = parser.parse_args()
     # Execute the command provided by user
     command = importlib.import_module('src.commands.' + args.method)
     command.run(docker_hub_client, args)
+
+    if args.method not in NO_TIP_METHODS and not login_token_present:
+        print('\nTip: ' + TIPS[0])
