@@ -31,8 +31,7 @@ install_requires = [
     'python-dateutil'
 ]
 
-with open('README.md', 'rb') as f:
-    long_descr = f.read().decode('utf-8')
+long_descr = open('README.md').read()
 
 setup(
     name='docker-hub',
@@ -47,7 +46,7 @@ setup(
     packages=find_packages(exclude=['tests.*', 'tests']),
     include_package_data=True,
     install_requires=install_requires,
-    setup_requires=['pytest-runner'],
+    setup_requires=['pytest-runner', 'setuptools>=38.6.0'],
     tests_require=['pytest'],
     entry_points={
         'console_scripts': ['docker-hub=src.__main__:main']
