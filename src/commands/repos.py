@@ -12,7 +12,8 @@ def run(docker_hub_client, args):
             for repo in resp['content']['results']:
                 formatted_date = ''
                 if repo['last_updated']:
-                    formatted_date = dateutil.parser.parse(repo['last_updated'])
+                    formatted_date = \
+                        dateutil.parser.parse(repo['last_updated'])
                     formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
                 rows.append([repo['name'], repo['description'],
                             repo['star_count'], repo['pull_count'],
