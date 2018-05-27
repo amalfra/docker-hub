@@ -39,6 +39,7 @@ setup(
     version=find_version('src', '__init__.py'),
     description='Access docker hub from your terminal',
     long_description=long_descr,
+    long_description_content_type='text/markdown',
     author='Amal Francis',
     author_email='amalfra@gmail.com',
     url='http://github.com/amalfra/docker-hub',
