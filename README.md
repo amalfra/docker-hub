@@ -22,6 +22,16 @@ pip3 install docker-hub
 ##### 1. Authenticate with Docker Hub
 If you are already loggedin using `docker login` command, then the token in docker engine config will be used. Otherwise you can choose to proceed without authenticating which will query docker hub without token and list only public resources. To authenticate for viewing private resources do `docker-hub login` command; this will save auth token in docker-hub's config file so that you don't need to do login everytime.
 
+If you want to authenticate for only current command(to not presist auth tokens in config) make use of the following env variables:
+  * DOCKER_HUB_USERNAME - Your Docker Hub username
+  * DOCKER_HUB_PASSWORD - Your Docker Hub password
+Pass the mentioned envs with your command and docker-hub will try to do authentication without prompting for credentials.
+
+eg:
+```sh
+DOCKER_HUB_USERNAME=hello DOCKER_HUB_PASSWORD=world docker-hub repos --orgname docker
+```
+
 ##### 2. Querying an organization for repositories
 To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` or `-o` parameter.
 eg: Get repos in organization named "docker"
