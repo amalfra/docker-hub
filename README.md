@@ -25,6 +25,7 @@ If you are already loggedin using `docker login` command, then the token in dock
 If you want to authenticate for only current command(to not presist auth tokens in config) make use of the following env variables:
   * DOCKER_HUB_USERNAME - Your Docker Hub username
   * DOCKER_HUB_PASSWORD - Your Docker Hub password
+
 Pass the mentioned envs with your command and docker-hub will try to do authentication without prompting for credentials.
 
 eg:
