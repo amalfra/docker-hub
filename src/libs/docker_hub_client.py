@@ -29,13 +29,14 @@ class DockerHubClient:
             content = json.loads(resp.content.decode())
         return {'content': content, 'code': resp.status_code}
 
-    def login(self, username=None, password=None):
+    def login(self, username=None, password=None, save_config=True):
         data = {'username': username, 'password': password}
         resp = self.do_request(DOCKER_HUB_API_ENDPOINT + 'users/login/',
                                'POST', data)
         if resp['code'] == 200:
             self.auth_token = resp['content']['token']
-            self.config.set('auth_token', self.auth_token)
+            if save_config:
+                self.config.set('auth_token', self.auth_token)
         return resp['code'] == 200
 
     def get_token(self):

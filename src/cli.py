@@ -2,7 +2,7 @@
 import sys
 import argparse
 import importlib
-from os import path
+import os
 from .consts import *
 from .libs.utils import *
 from .libs.docker_client import DockerClient
@@ -44,6 +44,17 @@ def main():
 
     docker_client = DockerClient()
     docker_hub_client = DockerHubClient()
+    # If Docker Hub username and password envs provided do login just for this
+    # session, ie don't persist token in config
+    docker_hub_username_env = os.getenv('DOCKER_HUB_USERNAME', False)
+    docker_hub_password_env = os.getenv('DOCKER_HUB_PASSWORD', False)
+    if docker_hub_username_env and docker_hub_password_env:
+        if not docker_hub_client.login(docker_hub_username_env,
+                                       docker_hub_password_env, False):
+            print('Invalid credentials. Failed logging in to Docker Hub.')
+            sys.exit(1)
+        else:
+            print('Logged in to Docker Hub.\n')
     # Check if an auth token is present
     login_token_present = docker_client.get_auth_token() or \
         docker_hub_client.get_token()
