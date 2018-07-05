@@ -53,8 +53,6 @@ def main():
                                        docker_hub_password_env, False):
             print('Invalid credentials. Failed logging in to Docker Hub.')
             sys.exit(1)
-        else:
-            print('Logged in to Docker Hub.\n')
     # Check if an auth token is present
     login_token_present = docker_client.get_auth_token() or \
         docker_hub_client.get_token()

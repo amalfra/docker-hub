@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-import sys
 import argparse
 import getpass
+import json
 import math
+import sys
 from tabulate import tabulate
 from ..consts import PER_PAGE
 
@@ -55,11 +56,7 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False):
                              (count, page, total_pages))
             print_table(header, rows)
     else:
-        json_result = []
-        for row in rows:
-            json_dict = {}
-            json_dict = dict(zip(header, row))
-            json_result.append(json_dict)
+        json_result = json.dumps([dict(zip(header, row)) for row in rows])
         print(json_result)
 
 
