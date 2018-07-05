@@ -62,5 +62,6 @@ def main():
     command = importlib.import_module('src.commands.' + args.method)
     command.run(docker_hub_client, args)
 
-    if args.method not in NO_TIP_METHODS and not login_token_present:
+    if args.method not in NO_TIP_METHODS and args.format not in \
+       NO_TIP_FORMATS and not login_token_present:
         print('\nTip: ' + TIPS[0])
