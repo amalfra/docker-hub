@@ -9,17 +9,19 @@ HELPMSGS = {
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch',
  'status': 'To query for only builds with specified status',
- 'login': 'Authenticate with Docker Hub'
+ 'login': 'Authenticate with Docker Hub',
+ 'config': 'Manage configuration values'
 }
 VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version',
-                 'login']
-NO_TIP_METHODS = ['login', 'version']
+                 'login', 'config']
+NO_TIP_METHODS = ['login', 'version', 'config']
 NO_TIP_FORMATS = ['json']
 VALID_DISPLAY_FORMATS = ['table', 'json']
 DOCKER_AUTH_FILE = '~/.docker/config.json'
 CONFIG_FILE = '~/.docker-hub/config.json'
 DOCKER_HUB_API_ENDPOINT = 'https://hub.docker.com/v2/'
 PER_PAGE = 15
+SECURE_CONFIG_KEYS = ['auth_token']
 
 BUILD_STATUS = {
     -4: 'canceled',

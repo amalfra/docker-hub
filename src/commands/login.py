@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from .. import __version__
 from ..libs.utils import user_input
 
 

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import json
 from os import path, makedirs
-from ..consts import CONFIG_FILE
+from ..consts import CONFIG_FILE, SECURE_CONFIG_KEYS
 
 
 class Config:
@@ -30,3 +30,7 @@ class Config:
         self.config_data[key] = value
         with open(self.config_json_file, 'w') as outfile:
             json.dump(self.config_data, outfile)
+
+    def get_all(self):
+        return {k: self.config_data[k]
+                for k in self.config_data if k not in SECURE_CONFIG_KEYS}
