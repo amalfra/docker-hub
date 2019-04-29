@@ -8,6 +8,7 @@ HELPMSGS = {
  'username': 'The Docker Hub username',
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch',
+ 'all_pages': 'Fetch all pages',
  'status': 'To query for only builds with specified status',
  'login': 'Authenticate with Docker Hub',
  'config': 'Manage configuration values'

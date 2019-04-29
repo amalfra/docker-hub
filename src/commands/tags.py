@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from ..libs.utils import *
+from ..consts import PER_PAGE
 import dateutil.parser
 
 
@@ -13,7 +14,17 @@ def run(docker_hub_client, args):
         >>> run(docker_hub_client,
         ...     args(orgname='docker', reponame='docker', page='1'))
     """
-    resp = docker_hub_client.get_tags(args.orgname, args.reponame, args.page)
+    if args.all_pages:
+        while not get_tags(docker_hub_client, args, per_page=100):
+            args.page += 1
+    else:
+        get_tags(docker_hub_client, args)
+
+
+def get_tags(docker_hub_client, args, per_page=PER_PAGE):
+    resp = docker_hub_client.get_tags(
+        args.orgname, args.reponame, args.page, per_page=per_page
+    )
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
             rows = []
@@ -31,5 +42,6 @@ def run(docker_hub_client, args):
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
     else:
-        print('Error fetching tags for: {0}/{1}'.
-              format(args.orgname, args.reponame))
+        print('Error {0} fetching tags for: {1}/{2}'.
+              format(resp['code'], args.orgname, args.reponame))
+        return resp['code']

@@ -22,6 +22,8 @@ def main():
                                         help=HELPMSGS['reponame'])
     page = parser.add_argument('-p', '--page', nargs='?', default=1,
                                help=HELPMSGS['page'])
+    all_pages = parser.add_argument('-a', '--all-pages', action='store_true',
+                                    help=HELPMSGS['all_pages'])
     display_format = parser.add_argument('-f', '--format',
                                          help=HELPMSGS['format'],
                                          choices=VALID_DISPLAY_FORMATS)
@@ -58,6 +60,11 @@ def main():
         docker_hub_client.get_token()
 
     args = parser.parse_args()
+
+    if args.all_pages and args.page != 1:
+        print('You cannot use all_pages and page args together.')
+        sys.exit(1)
+
     # Execute the command provided by user
     command = importlib.import_module('src.commands.' + args.method)
     command.run(docker_hub_client, args)
