@@ -5,6 +5,7 @@ import dateutil.parser
 from ..libs.utils import *
 from ..libs.config import Config
 
+
 def run(docker_hub_client, args):
     """ The command to list tags for given repo on docker hub
 
