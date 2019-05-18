@@ -11,7 +11,7 @@ HELPMSGS = {
  'status': 'To query for only builds with specified status',
  'login': 'Authenticate with Docker Hub',
  'config': 'Manage configuration values',
- 'configSetAction': 'Set a config option value',
+ 'action': 'Action to perform on an api method',
 }
 VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version',
                  'login', 'config']
