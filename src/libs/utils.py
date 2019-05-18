@@ -59,7 +59,8 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False,
                              (count, page, total_pages))
             print_table(header, rows)
     else:
-        json_result = json.dumps([dict(zip(header, row)) for row in rows])
+        json_result = json.dumps([dict(zip(header, row)) for row in rows],
+                                 indent=2, sort_keys=True)
         print(json_result)
 
 

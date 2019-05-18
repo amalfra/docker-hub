@@ -20,7 +20,7 @@ class DockerHubClient:
             headers['Authorization'] = 'JWT ' + self.auth_token
         request_method = getattr(requests, method.lower())
         if len(data) > 0:
-            data = json.dumps(data)
+            data = json.dumps(data, indent=2, sort_keys=True)
             resp = request_method(url, data, headers=headers)
         else:
             resp = request_method(url, headers=headers)
