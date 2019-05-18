@@ -1,11 +1,16 @@
 # -*- encoding: utf-8 -*-
-from ..libs.utils import *
 import dateutil.parser
+
+from ..libs.utils import *
+from ..libs.config import Config
 
 
 def run(docker_hub_client, args):
     """ The command to list repos of given org from docker hub """
-    resp = docker_hub_client.get_repos(args.orgname, args.page)
+    config = Config()
+    orgname = args.orgname or config.get('orgname')
+    resp = docker_hub_client.get_repos(orgname, args.page)
+
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
             rows = []
@@ -23,4 +28,4 @@ def run(docker_hub_client, args):
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
     else:
-        print('Error fetching repos for: ' + args.orgname)
+        print('Error fetching repos for: ' + orgname)

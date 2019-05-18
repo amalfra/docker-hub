@@ -31,6 +31,7 @@ class DockerHubClient:
 
     def login(self, username=None, password=None, save_config=True):
         data = {'username': username, 'password': password}
+        self.auth_token = None
         resp = self.do_request(DOCKER_HUB_API_ENDPOINT + 'users/login/',
                                'POST', data)
         if resp['code'] == 200:

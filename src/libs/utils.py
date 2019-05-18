@@ -5,7 +5,9 @@ import json
 import math
 import sys
 from tabulate import tabulate
+
 from ..consts import PER_PAGE
+from ..libs.config import Config
 
 try:
     input = raw_input
@@ -39,14 +41,15 @@ def print_table(header=[], rows=[]):
     print(tabulate(rows, headers=header, tablefmt='grid'))
 
 
-def print_result(format, rows=[], header=[], count=0, page=1, heading=False):
+def print_result(format, rows=[], header=[], count=0, page=1, heading=False,
+                 zeroResultMsg='No results found for your query.'):
     """ Print result in format specified by user """
     if not format:
         format = 'table'
 
     if format == 'table':
         if count == 0:
-            print('No results found for your query.')
+            print(zeroResultMsg)
         else:
             total_pages = int(((count - 1)/PER_PAGE) + 1)
             if heading:
@@ -79,9 +82,11 @@ class CondAction(argparse.Action):
 
     def __call__(self, parser, namespace, values, option_string=None):
         if values in self.make_required:
+            config = Config()
             options_required = self.make_required[values]
             for x in options_required:
-                x.required = True
+                if not config.get(x.dest):
+                    x.required = True
         try:
             setattr(namespace, self.dest, values)
             return super(CondAction, self).__call__(parser, namespace, values,

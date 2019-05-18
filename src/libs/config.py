@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import json
 from os import path, makedirs
-from ..consts import CONFIG_FILE, SECURE_CONFIG_KEYS
+from ..consts import CONFIG_FILE, SECURE_CONFIG_KEYS, VALID_CONFIG_NAMES
 
 
 class Config:
@@ -27,7 +27,16 @@ class Config:
         return None
 
     def set(self, key, value=None):
+        if key not in VALID_CONFIG_NAMES:
+            print(key + ' is not a valid config name')
+            return
         self.config_data[key] = value
+        with open(self.config_json_file, 'w') as outfile:
+            json.dump(self.config_data, outfile)
+
+    def remove(self, key):
+        if key in self.config_data:
+            self.config_data.pop(key)
         with open(self.config_json_file, 'w') as outfile:
             json.dump(self.config_data, outfile)
 
