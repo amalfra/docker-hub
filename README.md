@@ -18,6 +18,8 @@ Python 3 users can do:
 pip3 install docker-hub
 ```
 
+> Note: Starting from v3.0 support for python v2 will be dropped.
+
 ## Usage
 ##### 1. Authenticate with Docker Hub
 If you are already logged in using `docker login` command, then the token in Docker engine config will be used. Otherwise you can choose to proceed without authenticating which will query docker hub without token and list only public resources. To authenticate for viewing private resources do `docker-hub login` command; this will save auth token in `docker-hub`'s config file so that you don't need to login every time.
@@ -36,6 +38,7 @@ DOCKER_HUB_USERNAME=hello DOCKER_HUB_PASSWORD=world docker-hub repos --orgname d
 
 ##### 2. Querying an organization for repositories
 To query repositories in an organization use `repos` argument. The organization to query can be passed as `--orgname` or `-o` parameter.
+
 e.g.: Get repos in organization named "docker"
 ```sh
 docker-hub repos --orgname docker
@@ -43,6 +46,7 @@ docker-hub repos --orgname docker
 
 ##### 3. Querying the tags of a repository
 To query tags of a repository use `tags` argument. The organization of repository can be passed as `--orgname` or `-o` parameter. The repository to query can be passed as `--reponame` or `-r` parameter.
+
 e.g.: Get tags of repository "ucp" in organization named "docker"
 ```sh
 docker-hub tags --orgname docker --reponame ucp
@@ -50,6 +54,7 @@ docker-hub tags --orgname docker --reponame ucp
 
 ##### 4. Querying a user profile
 To query a user profile use `users` argument. The username to query can be passed as `--username` or `-u` parameter.
+
 e.g.: Get profile of user named "docker"
 ```sh
 docker-hub users --username docker
@@ -57,6 +62,7 @@ docker-hub users --username docker
 
 ##### 5. Querying the auto-builds of a repository
 To query auto-builds of a repository use `builds` argument. The organization of repository can be passed as `--orgname` or `-o` parameter. The repository to query can be passed as `--reponame` or `-r` parameter.
+
 e.g.: Get build of repository "ucp" in organization named "docker"
 ```sh
 docker-hub builds --orgname docker --reponame ucp
@@ -64,9 +70,33 @@ docker-hub builds --orgname docker --reponame ucp
 
 ##### 6. Querying an organization for auto-build queue
 To query the auto-build repositories with pending builds use the `queue` argument. The organization to query can be passed as `--orgname` or `-o` parameter.
+
 e.g.: Get the building queue for organization named "docker"
 ```sh
 docker-hub queue --orgname docker
+```
+
+##### 7. Setting and getting config values
+Config values can be set or get using `config` argument. Currently supported config names:
+* orgname - orgname to use in case of `--orgname` is not provided.
+
+A config can be set using `set` command and passing config name along with it's corresponding value.
+
+e.g.: Set value for config "orgname"
+```sh
+docker-hub config set orgname docker
+```
+
+A config value can be get using `get` command and passing config name.
+
+e.g.: Get value for config "orgname"
+```sh
+docker-hub config get orgname
+```
+
+To list all config values that are currently present:
+```sh
+docker-hub config
 ```
 
 ##### Notes:
