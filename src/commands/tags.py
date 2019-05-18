@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
-from ..libs.utils import *
+
 import dateutil.parser
 
+from ..libs.utils import *
+from ..libs.config import Config
 
 def run(docker_hub_client, args):
     """ The command to list tags for given repo on docker hub
@@ -13,7 +15,10 @@ def run(docker_hub_client, args):
         >>> run(docker_hub_client,
         ...     args(orgname='docker', reponame='docker', page='1'))
     """
-    resp = docker_hub_client.get_tags(args.orgname, args.reponame, args.page)
+    config = Config()
+    orgname = args.orgname or config.get('orgname')
+    resp = docker_hub_client.get_tags(orgname, args.reponame, args.page)
+
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
             rows = []
@@ -30,6 +35,8 @@ def run(docker_hub_client, args):
             header = ['Name', 'Size', 'Last updated']
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
+        else:
+            print('This repo has no tags')
     else:
         print('Error fetching tags for: {0}/{1}'.
-              format(args.orgname, args.reponame))
+              format(orgname, args.reponame))
