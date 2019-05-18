@@ -24,7 +24,7 @@ def user_input(text='', hide_input=False):
             inp = input(text)
     except KeyboardInterrupt:
         sys.exit(0)
-    except:
+    except Exception:
         inp = None
     return inp
 
