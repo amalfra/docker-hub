@@ -5,9 +5,9 @@ python:
 
 install:
   - pip install coverage coveralls
-  - pip install pep8
+  - pip install pycodestyle
 script:
-  - pep8 .
+  - pycodestyle .
   - coverage run --source=src setup.py test
 after_success:
   - coveralls
