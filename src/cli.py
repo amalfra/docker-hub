@@ -18,15 +18,15 @@ def main():
                                        help=HELPMSGS['username'])
     org_name_arg = parser.add_argument('-o', '--orgname',
                                        help=HELPMSGS['orgname'])
+    org_name_arg.configName = 'orgname'
     repo_name_arg = parser.add_argument('-r', '--reponame',
                                         help=HELPMSGS['reponame'])
-    page = parser.add_argument('-p', '--page', nargs='?', default=1,
-                               help=HELPMSGS['page'])
-    all_pages = parser.add_argument('-a', '--all-pages', action='store_true',
-                                    help=HELPMSGS['all_pages'])
-    display_format = parser.add_argument('-f', '--format',
-                                         help=HELPMSGS['format'],
-                                         choices=VALID_DISPLAY_FORMATS)
+    parser.add_argument('-p', '--page', nargs='?', default=1,
+                        help=HELPMSGS['page'])
+    parser.add_argument('-a', '--all-pages', action='store_true',
+                        help=HELPMSGS['all_pages'])
+    parser.add_argument('-f', '--format', help=HELPMSGS['format'],
+                        choices=VALID_DISPLAY_FORMATS)
 
     required_args = {
         'repos': [org_name_arg],
@@ -38,6 +38,10 @@ def main():
     parser.add_argument('method', type=str.lower, choices=VALID_METHODS,
                         nargs=1, help=HELPMSGS['method'], action=CondAction,
                         to_be_required=required_args)
+    parser.add_argument('action', type=str.lower, choices=VALID_ACTIONS,
+                        nargs='?', help=HELPMSGS['action'])
+    parser.add_argument('param1', type=str.lower, nargs='?')
+    parser.add_argument('param2', type=str.lower, nargs='?')
 
     # Print help if no arguments given
     if len(sys.argv) < 2:

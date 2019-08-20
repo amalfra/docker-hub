@@ -11,10 +11,13 @@ HELPMSGS = {
  'all_pages': 'Fetch all pages',
  'status': 'To query for only builds with specified status',
  'login': 'Authenticate with Docker Hub',
- 'config': 'Manage configuration values'
+ 'config': 'Manage configuration values',
+ 'action': 'Action to perform on an api method',
 }
 VALID_METHODS = ['repos', 'tags', 'builds', 'users', 'queue', 'version',
                  'login', 'config']
+VALID_ACTIONS = ['set', 'get']
+VALID_CONFIG_NAMES = ['orgname']
 NO_TIP_METHODS = ['login', 'version', 'config']
 NO_TIP_FORMATS = ['json']
 VALID_DISPLAY_FORMATS = ['table', 'json']
