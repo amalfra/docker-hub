@@ -46,6 +46,6 @@ BUILD_STATUS = {
 
 TIPS = [
     'You are not authenticated with Docker Hub. Hence only public \
-resoruces will be fetched. Try authenticating using `docker login` or \
+resources will be fetched. Try authenticating using `docker login` or \
 `docker-hub login` command to see more.'
 ]
