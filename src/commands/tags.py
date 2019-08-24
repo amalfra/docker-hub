@@ -8,27 +8,6 @@ from ..libs.config import Config
 
 def run(docker_hub_client, args):
     """ The command to list tags for given repo on docker hub
-
-        >>> from ..tests.docker_hub_client import \
-            NoResultsTestingDockerHubClient, WithResultsTestingDockerHubClient
-        >>> from collections import namedtuple
-        >>> args = namedtuple('args', 'orgname reponame page format all_pages')
-        >>> docker_hub_client = NoResultsTestingDockerHubClient()
-        >>> run(docker_hub_client,
-        ...     args(orgname='docker', reponame='docker', page='1',
-        ...          format='json', all_pages=False))
-        This repo has no tags
-        >>> docker_hub_client = WithResultsTestingDockerHubClient()
-        >>> run(docker_hub_client,
-        ...     args(orgname='docker', reponame='docker', page='1',
-        ...          format='json', all_pages=False))
-        [
-          {
-            "Last updated": "2018-12-12 14:40",
-            "Name": "1.4.2-alpine",
-            "Size": "15.09 MB"
-          }
-        ]
     """
     config = Config()
     orgname = args.orgname or config.get('orgname')
