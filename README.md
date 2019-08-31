@@ -52,6 +52,11 @@ e.g.: Get tags of repository "ucp" in organization named "docker"
 docker-hub tags --orgname docker --reponame ucp
 ```
 
+If you want to display all pages result then use option `--all-pages` or `-a`
+```sh
+docker-hub tags --orgname docker --reponame ucp --all-pages
+```
+
 ##### 4. Querying a user profile
 To query a user profile use `users` argument. The username to query can be passed as `--username` or `-u` parameter.
 
