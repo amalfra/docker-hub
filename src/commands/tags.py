@@ -1,39 +1,28 @@
 # -*- encoding: utf-8 -*-
-
 import dateutil.parser
 
+from ..consts import PER_PAGE
 from ..libs.utils import *
 from ..libs.config import Config
 
 
 def run(docker_hub_client, args):
     """ The command to list tags for given repo on docker hub
-
-        >>> from ..tests.docker_hub_client import \
-            NoResultsTestingDockerHubClient, WithResultsTestingDockerHubClient
-        >>> from collections import namedtuple
-        >>> args = namedtuple('args', 'orgname reponame page format')
-        >>> docker_hub_client = NoResultsTestingDockerHubClient()
-        >>> run(docker_hub_client,
-        ...     args(orgname='docker', reponame='docker', page='1',
-        ...          format='json'))
-        This repo has no tags
-        >>> docker_hub_client = WithResultsTestingDockerHubClient()
-        >>> run(docker_hub_client,
-        ...     args(orgname='docker', reponame='docker', page='1',
-        ...          format='json'))
-        [
-          {
-            "Last updated": "2018-12-12 14:40",
-            "Name": "1.4.2-alpine",
-            "Size": "15.09 MB"
-          }
-        ]
     """
     config = Config()
     orgname = args.orgname or config.get('orgname')
-    resp = docker_hub_client.get_tags(orgname, args.reponame, args.page)
 
+    if args.all_pages:
+        while not get_tags(docker_hub_client, orgname, args, per_page=100):
+            args.page += 1
+    else:
+        get_tags(docker_hub_client, orgname, args)
+
+
+def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
+    resp = docker_hub_client.get_tags(
+        orgname, args.reponame, args.page, per_page=per_page
+    )
     if resp['code'] == 200:
         if resp['content']['count'] > 0:
             rows = []
@@ -53,5 +42,6 @@ def run(docker_hub_client, args):
         else:
             print('This repo has no tags')
     else:
-        print('Error fetching tags for: {0}/{1}'.
-              format(orgname, args.reponame))
+        print('Error {0} fetching tags for: {1}/{2}'.
+              format(resp['code'], orgname, args.reponame))
+        return resp['code']

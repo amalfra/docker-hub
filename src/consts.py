@@ -8,6 +8,7 @@ HELPMSGS = {
  'username': 'The Docker Hub username',
  'format': 'You can dispaly results in %(choices)s formats',
  'page': 'The page of result to fetch',
+ 'all_pages': 'Fetch all pages',
  'status': 'To query for only builds with specified status',
  'login': 'Authenticate with Docker Hub',
  'config': 'Manage configuration values',
@@ -45,6 +46,6 @@ BUILD_STATUS = {
 
 TIPS = [
     'You are not authenticated with Docker Hub. Hence only public \
-resoruces will be fetched. Try authenticating using `docker login` or \
+resources will be fetched. Try authenticating using `docker login` or \
 `docker-hub login` command to see more.'
 ]
