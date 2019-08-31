@@ -27,7 +27,7 @@ class Config:
         return None
 
     def set(self, key, value=None):
-        if key not in VALID_CONFIG_NAMES:
+        if key not in VALID_CONFIG_NAMES and key not in SECURE_CONFIG_KEYS:
             print(key + ' is not a valid config name')
             return
         self.config_data[key] = value
