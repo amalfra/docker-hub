@@ -2,7 +2,7 @@
 import dateutil.parser
 
 from ..consts import PER_PAGE
-from ..libs.utils import *
+from ..libs.utils import readableMemoryFormat, print_result
 from ..libs.config import Config
 
 
@@ -13,8 +13,10 @@ def run(docker_hub_client, args):
     orgname = args.orgname or config.get('orgname')
 
     if args.all_pages:
-        while get_tags(docker_hub_client, orgname, args) > args.page:
+        r = get_tags(docker_hub_client, orgname, args)
+        while r and r > args.page:
             args.page += 1
+            r = get_tags(docker_hub_client, orgname, args)
     else:
         get_tags(docker_hub_client, orgname, args)
 

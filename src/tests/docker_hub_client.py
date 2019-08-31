@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import json
 from ..libs.docker_hub_client import DockerHubClient
+from .helpers import generate_results
 
 
 class BaseTestingDockerHubClient(DockerHubClient):
@@ -19,9 +20,11 @@ class NoResultsTestingDockerHubClient(BaseTestingDockerHubClient):
 
 
 class WithResultsTestingDockerHubClient(BaseTestingDockerHubClient):
+    def __init__(self, results_count=1):
+        self.results_count = results_count
+
     def do_request(self, url, method='GET', data={}):
-        content = {'count': 1, 'results': [{'last_updated': '2018-12-12 14:40',
-                   'name': '1.4.2-alpine', 'full_size': 15820065}]}
+        content = {'count': 1, 'results': generate_results(self.results_count)}
         if 'login' in url:
             content = self._fake_login()
         return {'content': content, 'code': 200}
