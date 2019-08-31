@@ -15,7 +15,7 @@ def test_no_tags(capsys):
     run(
         docker_hub_client,
         args(
-            orgname='docker', reponame='docker', page='1', format='json',
+            orgname='docker', reponame='docker', page=1, format='json',
             all_pages=False
         )
     )
@@ -29,7 +29,7 @@ def test_no_tags_and_all_pages(capsys):
     run(
         docker_hub_client,
         args(
-            orgname='docker', reponame='docker', page='1', format='json',
+            orgname='docker', reponame='docker', page=1, format='json',
             all_pages=True
         )
     )
@@ -43,7 +43,7 @@ def test_with_tags(capsys):
     run(
         docker_hub_client,
         args(
-            orgname='docker', reponame='docker', page='1', format='json',
+            orgname='docker', reponame='docker', page=1, format='json',
             all_pages=False
         )
     )
@@ -63,7 +63,7 @@ def test_with_tags_and_all_pages(capsys):
     run(
         docker_hub_client,
         args(
-            orgname='docker', reponame='docker', page='1', format='json',
+            orgname='docker', reponame='docker', page=1, format='json',
             all_pages=True
         )
     )
