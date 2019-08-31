@@ -13,7 +13,7 @@ def run(docker_hub_client, args):
     orgname = args.orgname or config.get('orgname')
 
     if args.all_pages:
-        while not get_tags(docker_hub_client, orgname, args, per_page=100):
+        while get_tags(docker_hub_client, orgname, args) > args.page:
             args.page += 1
     else:
         get_tags(docker_hub_client, orgname, args)
@@ -39,9 +39,10 @@ def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
             header = ['Name', 'Size', 'Last updated']
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
+            total_pages = int(((resp['content']['count'] - 1)/per_page) + 1)
+            return total_pages
         else:
             print('This repo has no tags')
     else:
         print('Error {0} fetching tags for: {1}/{2}'.
               format(resp['code'], orgname, args.reponame))
-        return resp['code']
