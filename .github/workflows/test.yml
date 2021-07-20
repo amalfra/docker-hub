@@ -24,4 +24,6 @@ jobs:
         run: coverage run --source=src setup.py test
       - name: After success
         if: ${{ success() }}
+        with:
+          github-token: ${{ github.token }}
         run: coveralls
