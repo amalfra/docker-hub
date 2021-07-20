@@ -35,7 +35,7 @@ long_descr = open('README.md').read()
 
 setup(
     name='docker-hub',
-    version=find_version('src', '__init__.py'),
+    version=find_version('docker_hub', '__init__.py'),
     description='Access docker hub from your terminal',
     long_description=long_descr,
     long_description_content_type='text/markdown',
@@ -49,7 +49,7 @@ setup(
     setup_requires=['pytest-runner', 'setuptools>=38.6.0'],
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': ['docker-hub=src.__main__:main']
+        'console_scripts': ['docker-hub=docker_hub.__main__:main']
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
