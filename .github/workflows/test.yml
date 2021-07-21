@@ -1,4 +1,4 @@
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 name: Test
 jobs:
   test:
@@ -21,7 +21,7 @@ jobs:
       - name: Lint
         run: pycodestyle .
       - name: Test
-        run: coverage run --source=src setup.py test
+        run: coverage run --source=docker_hub setup.py test
       - name: After success
         if: ${{ success() }}
         env:

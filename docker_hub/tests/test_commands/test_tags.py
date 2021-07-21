@@ -3,7 +3,7 @@ from collections import namedtuple
 
 from ..docker_hub_client import \
     NoResultsTestingDockerHubClient, WithResultsTestingDockerHubClient
-from src.commands.tags import run
+from docker_hub.commands.tags import run
 from ..helpers import convert_key_to_result_format, generate_results
 
 
