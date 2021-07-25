@@ -9,7 +9,7 @@ Docker Hub CLI
 A CLI tool to access Docker Hub from your terminal.
 
 ## Installation
-> Note: Python 3.5+ is required.
+> Note: Python 3.6+ is required.
 
 You should have pip installed in your system.
 ```sh
