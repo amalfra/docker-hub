@@ -9,11 +9,6 @@ from tabulate import tabulate
 from ..consts import PER_PAGE
 from ..libs.config import Config
 
-try:
-    input = raw_input
-except NameError:
-    pass
-
 
 def user_input(text='', hide_input=False):
     """ Nice little function to read text inputs from stdin """
