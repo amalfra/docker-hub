@@ -21,7 +21,7 @@ jobs:
       - name: Lint
         run: pylint ./src
       - name: Test
-        run: coverage run --source=src setup.py test
+        run: coverage run --source=src -m pytest
       - name: After success
         if: ${{ success() }}
         env:
