@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+"""
+Processing of tags command
+"""
 import dateutil.parser
 
 from ..consts import PER_PAGE
@@ -13,15 +16,17 @@ def run(docker_hub_client, args):
     orgname = args.orgname or config.get('orgname')
 
     if args.all_pages:
-        r = get_tags(docker_hub_client, orgname, args)
-        while r and r > args.page:
+        resp = get_tags(docker_hub_client, orgname, args)
+        while resp and resp > args.page:
             args.page += 1
-            r = get_tags(docker_hub_client, orgname, args)
+            resp = get_tags(docker_hub_client, orgname, args)
     else:
         get_tags(docker_hub_client, orgname, args)
 
 
+#pylint: disable=inconsistent-return-statements
 def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
+    """ Fetch tags of repository """
     resp = docker_hub_client.get_tags(
         orgname, args.reponame, args.page, per_page=per_page
     )
@@ -43,8 +48,8 @@ def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
                          args.page)
             total_pages = int(((resp['content']['count'] - 1)/per_page) + 1)
             return total_pages
-        else:
-            print('This repo has no tags')
-    else:
-        print('Error {0} fetching tags for: {1}/{2}'.
-              format(resp['code'], orgname, args.reponame))
+        print('This repo has no tags')
+        return None
+
+    code = resp['code']
+    print(f'Error {code} fetching tags for: {orgname}/{args.reponame}')

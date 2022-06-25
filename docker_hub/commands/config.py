@@ -1,9 +1,12 @@
 # -*- encoding: utf-8 -*-
+"""
+Process config command
+"""
 from ..libs.utils import print_result
 from ..libs.config import Config
 
 
-def run(docker_hub_client, args):
+def run(_, args):
     """ The command to list and modify config values """
     config = Config()
     header = ['Config', 'Value']

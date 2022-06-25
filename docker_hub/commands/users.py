@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
-from ..libs.utils import *
+"""
+Process users command
+"""
 import dateutil.parser
+from ..libs.utils import print_result
 
 
 def run(docker_hub_client, args):
@@ -15,7 +18,7 @@ def run(docker_hub_client, args):
                 formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
                 resp['content'][key] = formatted_date
             rows.append([key, resp['content'][key]])
-        heading = "User profile of %s" % (args.username)
+        heading = f'User profile of {args.username}'
         print_result(args.format, rows, heading=heading, count=1)
     else:
         print('Error fetching profile for: ' + args.username)

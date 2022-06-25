@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
+"""
+Process repos command
+"""
 import dateutil.parser
 
-from ..libs.utils import *
+from ..libs.utils import print_result
 from ..libs.config import Config
 
 

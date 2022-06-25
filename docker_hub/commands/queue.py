@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
-from ..libs.utils import *
-from ..consts import BUILD_STATUS
+"""
+Process queue command
+"""
 import dateutil.parser
+from ..libs.utils import print_result
+from ..consts import BUILD_STATUS
 
 
 def repos(docker_hub_client, args):

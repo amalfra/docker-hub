@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
-from ..libs.utils import *
-from ..consts import BUILD_STATUS
+"""
+Process builds command
+"""
 import dateutil.parser
+from ..libs.utils import print_result
+from ..consts import BUILD_STATUS
 
 
 def run(docker_hub_client, args):
@@ -25,5 +28,4 @@ def run(docker_hub_client, args):
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
     else:
-        print('Error fetching builds for: {0}/{1}'.
-              format(args.orgname, args.reponame))
+        print(f'Error fetching builds for: {args.orgname}/{args.reponame}')

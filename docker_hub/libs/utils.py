@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+"""
+Helper methods
+"""
 import argparse
 import getpass
 import json
@@ -60,7 +63,7 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False,
 
 
 def readableMemoryFormat(size):
-    if (size == 0):
+    if size == 0:
         return '0B'
     size_name = ("KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
     i = int(math.floor(math.log(size, 1024)))
