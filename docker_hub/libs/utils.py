@@ -78,6 +78,7 @@ def readable_memory_format(size):
     return f'{formatted_size} {size_name[i]}'
 
 
+#pylint: disable=too-few-public-methods
 class CondAction(argparse.Action):
     """ A custom argparse action to support required arguments """
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
