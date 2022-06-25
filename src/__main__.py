@@ -74,7 +74,7 @@ def main():
         sys.exit(1)
 
     # Execute the command provided by user
-    command = importlib.import_module('docker_hub.commands.' + args.method)
+    command = importlib.import_module('src.commands.' + args.method)
     command.run(docker_hub_client, args)
 
     if args.method not in NO_TIP_METHODS and args.format not in \
