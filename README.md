@@ -4,7 +4,7 @@ Docker Hub CLI
 ![Build Status](https://github.com/amalfra/docker-hub/actions/workflows/test.yml/badge.svg?branch=main)
 [![Coverage Status](https://coveralls.io/repos/github/amalfra/docker-hub/badge.svg?branch=master)](https://coveralls.io/github/amalfra/docker-hub?branch=master)
 
-[![asciicast](https://asciinema.org/a/89901.png)](https://asciinema.org/a/89901)
+[![asciicast](https://asciinema.org/a/504155.svg)](https://asciinema.org/a/504155)
 
 A CLI tool to access Docker Hub from your terminal.
 
