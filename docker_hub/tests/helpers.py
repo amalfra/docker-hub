@@ -1,34 +1,40 @@
+# -*- encoding: utf-8 -*-
+"""
+Test helper methods
+"""
 from ..libs.utils import readableMemoryFormat
 
 
 def generate_results(count=1):
-    r = []
+    """ This generates fake API results """
+    resp = []
 
-    for d in range(0, count):
-        o = {
+    for itr in range(0, count):
+        output = {
             'last_updated': '2018-12-12 14:40',
-            'name': '1.4.2-alpine-{0}'.format(d + 1),
-            'full_size': 15820065 + d
+            'name': f'1.4.2-alpine-{itr + 1}',
+            'full_size': 15820065 + itr
         }
-        r.append(o)
+        resp.append(output)
 
-    return r
+    return resp
 
 
-def convert_key_to_result_format(result_arr=[], result_key_map={}):
-    r = []
+def convert_key_to_result_format(result_arr=None, result_key_map=None):
+    """ This converted response to correct display format """
+    resp = []
 
-    for d in result_arr:
-        o = {}
-        for k in d:
+    for itr in result_arr:
+        output = {}
+        for k in itr:
             if k == 'full_size':
                 # Convert full_size in bytes to KB
-                size_in_kb = d[k] / 1024
-                d[k] = readableMemoryFormat(size_in_kb)
+                size_in_kb = itr[k] / 1024
+                itr[k] = readableMemoryFormat(size_in_kb)
             if result_key_map[k]:
-                o[result_key_map[k]] = d[k]
+                output[result_key_map[k]] = itr[k]
             else:
-                o[k] = d[k]
-        r.append(o)
+                output[k] = itr[k]
+        resp.append(output)
 
-    return r
+    return resp

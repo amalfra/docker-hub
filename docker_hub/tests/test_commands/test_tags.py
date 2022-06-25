@@ -1,20 +1,25 @@
+# -*- encoding: utf-8 -*-
+"""
+Tests tags command
+"""
 import json
 from collections import namedtuple
 
+from docker_hub.commands.tags import run
 from ..docker_hub_client import \
     NoResultsTestingDockerHubClient, WithResultsTestingDockerHubClient
-from docker_hub.commands.tags import run
 from ..helpers import convert_key_to_result_format, generate_results
 
 
-args = namedtuple('args', 'orgname reponame page format all_pages')
+Args = namedtuple('args', 'orgname reponame page format all_pages')
 
 
 def test_no_tags(capsys):
+    """ When there are no tags returned by API """
     docker_hub_client = NoResultsTestingDockerHubClient()
     run(
         docker_hub_client,
-        args(
+        Args(
             orgname='docker', reponame='docker', page=1, format='json',
             all_pages=False
         )
@@ -25,10 +30,11 @@ def test_no_tags(capsys):
 
 
 def test_no_tags_and_all_pages(capsys):
+    """ When all_page applied during no tags returned by API """
     docker_hub_client = NoResultsTestingDockerHubClient()
     run(
         docker_hub_client,
-        args(
+        Args(
             orgname='docker', reponame='docker', page=1, format='json',
             all_pages=True
         )
@@ -39,10 +45,11 @@ def test_no_tags_and_all_pages(capsys):
 
 
 def test_with_tags(capsys):
+    """ When there are tags returned by API """
     docker_hub_client = WithResultsTestingDockerHubClient(12)
     run(
         docker_hub_client,
-        args(
+        Args(
             orgname='docker', reponame='docker', page=1, format='json',
             all_pages=False
         )
@@ -59,10 +66,11 @@ def test_with_tags(capsys):
 
 
 def test_with_tags_and_all_pages(capsys):
+    """ When all_pageas applied there are tags returned by API """
     docker_hub_client = WithResultsTestingDockerHubClient(200)
     run(
         docker_hub_client,
-        args(
+        Args(
             orgname='docker', reponame='docker', page=1, format='json',
             all_pages=True
         )
