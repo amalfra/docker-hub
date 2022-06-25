@@ -20,10 +20,10 @@ def run(docker_hub_client, args):
                     formatted_date = \
                         dateutil.parser.parse(repo['last_updated'])
                     formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
-                rows.append([repo['name'], repo['description'],
+                rows.append([repo['name'], repo['repository_type'],
                             repo['star_count'], repo['pull_count'],
                             formatted_date])
-            header = ['Name', 'Description', 'Star count', 'Pull count',
+            header = ['Name', 'Repository Type', 'Star count', 'Pull count',
                       'Last updated']
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
