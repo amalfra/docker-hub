@@ -2,7 +2,7 @@
 """
 Tests for Dockerhub API client
 """
-from ..libs.docker_hub_client import DockerHubClient
+from src.libs.docker_hub_client import DockerHubClient
 from .helpers import generate_results
 
 
@@ -20,6 +20,10 @@ class NoResultsTestingDockerHubClient(BaseTestingDockerHubClient):
             content = self._fake_login()
         return {'content': content, 'code': 200}
 
+class NoResultsUsersTestingDockerHubClient(BaseTestingDockerHubClient):
+    """ When API returns no results for users endpoint """
+    def do_request(self, url, method='GET', data=None):
+        return {'content': None, 'code': 404}
 
 class WithResultsTestingDockerHubClient(BaseTestingDockerHubClient):
     """ When API returns results """
@@ -29,6 +33,14 @@ class WithResultsTestingDockerHubClient(BaseTestingDockerHubClient):
 
     def do_request(self, url, method='GET', data=None):
         content = {'count': 1, 'results': generate_results(self.results_count)}
+        if 'login' in url:
+            content = self._fake_login()
+        return {'content': content, 'code': 200}
+
+class WithUserResultsTestingDockerHubClient(BaseTestingDockerHubClient):
+    """ When API returns user result """
+    def do_request(self, url, method='GET', data=None):
+        content = generate_results(1)[0]
         if 'login' in url:
             content = self._fake_login()
         return {'content': content, 'code': 200}
