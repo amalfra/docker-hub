@@ -56,8 +56,8 @@ class DockerHubClient:
 
     def get_tags(self, org, repo, page=1, per_page=PER_PAGE):
         """ Get all tags of an repository """
-        url = f'{DOCKER_HUB_API_ENDPOINT}repositories/{org}/{repo} \
-            /tags?page={page}&page_size={per_page}'
+        url = f'{DOCKER_HUB_API_ENDPOINT}repositories/{org}/{repo}' \
+            + f'/tags?page={page}&page_size={per_page}'
         return self.do_request(url)
 
     def get_users(self, username):
@@ -67,6 +67,6 @@ class DockerHubClient:
 
     def get_buildhistory(self, org, repo, page=1, per_page=PER_PAGE):
         """ Get build history of a repository """
-        url = f'{DOCKER_HUB_API_ENDPOINT}repositories/{org}/{repo} \
-            /buildhistory?page={page}&page_size={per_page}'
+        url = f'{DOCKER_HUB_API_ENDPOINT}repositories/{org}/{repo}' \
+            + f'/buildhistory?page={page}&page_size={per_page}'
         return self.do_request(url)
