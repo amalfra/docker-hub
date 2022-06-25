@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+"""
+This file contains all global config constants used by the app
+"""
 EPILOG = 'Docker Hub in your terminal'
 DESCRIPTION = 'Access docker hub from your terminal'
 HELPMSGS = {

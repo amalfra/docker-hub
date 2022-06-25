@@ -1,10 +1,14 @@
 # -*- encoding: utf-8 -*-
+"""
+The entry point
+"""
 import sys
 import argparse
 import importlib
 import os
-from .consts import *
-from .libs.utils import *
+from .consts import DESCRIPTION, EPILOG, HELPMSGS, VALID_METHODS, VALID_DISPLAY_FORMATS, \
+    VALID_ACTIONS, NO_TIP_METHODS, NO_TIP_FORMATS, TIPS
+from .libs.utils import CondAction
 from .libs.docker_client import DockerClient
 from .libs.docker_hub_client import DockerHubClient
 
@@ -52,8 +56,8 @@ def main():
     docker_hub_client = DockerHubClient()
     # If Docker Hub username and password envs provided do login just for this
     # session, ie don't persist token in config
-    docker_hub_username_env = os.getenv('DOCKER_HUB_USERNAME', False)
-    docker_hub_password_env = os.getenv('DOCKER_HUB_PASSWORD', False)
+    docker_hub_username_env = os.getenv('DOCKER_HUB_USERNAME', None)
+    docker_hub_password_env = os.getenv('DOCKER_HUB_PASSWORD', None)
     if docker_hub_username_env and docker_hub_password_env:
         if not docker_hub_client.login(docker_hub_username_env,
                                        docker_hub_password_env, False):
