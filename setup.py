@@ -45,7 +45,7 @@ setup(
     include_package_data=True,
     install_requires=install_requires,
     setup_requires=['pytest-runner', 'setuptools>=38.6.0'],
-    tests_require=['pytest'] + install_requires,
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': ['docker-hub=docker_hub.__main__:main']
     },

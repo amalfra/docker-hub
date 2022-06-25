@@ -17,6 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install . 
           pip install coverage coveralls pylint
       - name: Lint
         run: pylint ./docker_hub
