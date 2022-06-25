@@ -2,7 +2,7 @@
 """
 Test helper methods
 """
-from ..libs.utils import readableMemoryFormat
+from ..libs.utils import readable_memory_format
 
 
 def generate_results(count=1):
@@ -30,7 +30,7 @@ def convert_key_to_result_format(result_arr=None, result_key_map=None):
             if k == 'full_size':
                 # Convert full_size in bytes to KB
                 size_in_kb = itr[k] / 1024
-                itr[k] = readableMemoryFormat(size_in_kb)
+                itr[k] = readable_memory_format(size_in_kb)
             if result_key_map[k]:
                 output[result_key_map[k]] = itr[k]
             else:

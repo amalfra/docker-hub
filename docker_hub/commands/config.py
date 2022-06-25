@@ -14,7 +14,7 @@ def run(_, args):
     if not args.action:
         all_config = config.get_all()
         print_result('table', all_config.items(), header, len(all_config),
-                     zeroResultMsg='No config values found')
+                     zero_result_msg='No config values found')
     elif args.action == 'set':
         if not args.param1:
             print('Config name is required')

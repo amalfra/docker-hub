@@ -7,6 +7,7 @@ from os import path
 from ..consts import DOCKER_AUTH_FILE
 
 
+#pylint: disable=too-few-public-methods
 class DockerClient:
     """ A wrapper for communication with docker engine """
     def __init__(self):

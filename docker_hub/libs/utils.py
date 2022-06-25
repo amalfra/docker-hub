@@ -13,6 +13,7 @@ from ..consts import PER_PAGE
 from ..libs.config import Config
 
 
+#pylint: disable=broad-except
 def user_input(text='', hide_input=False):
     """ Nice little function to read text inputs from stdin """
     try:
@@ -30,31 +31,35 @@ def user_input(text='', hide_input=False):
 def print_header(text=''):
     """ Pretty print header text """
     print('#' * (len(text) + 3))
-    print(' %s' % text)
+    print(f' {text}')
     print('#' * (len(text) + 3))
 
 
-def print_table(header=[], rows=[]):
+def print_table(header=None, rows=None):
     """ Print tables in commandline """
     print(tabulate(rows, headers=header, tablefmt='grid'))
 
 
-def print_result(format, rows=[], header=[], count=0, page=1, heading=False,
-                 zeroResultMsg='No results found for your query.'):
+#pylint: disable=too-many-arguments
+def print_result(fmt, rows=None, header=None, count=0, page=1, heading=False,
+                 zero_result_msg='No results found for your query.'):
     """ Print result in format specified by user """
-    if not format:
-        format = 'table'
+    if not fmt:
+        fmt = 'table'
+    if rows is None:
+        rows = []
+    if header is None:
+        header = []
 
-    if format == 'table':
+    if fmt == 'table':
         if count == 0:
-            print(zeroResultMsg)
+            print(zero_result_msg)
         else:
             total_pages = int(((count - 1)/PER_PAGE) + 1)
             if heading:
                 print_header(heading)
             else:
-                print_header('Found %s results. On page %s of %s' %
-                             (count, page, total_pages))
+                print_header(f'Found {count} results. On page {page} of {total_pages}')
             print_table(header, rows)
     else:
         json_result = json.dumps([dict(zip(header, row)) for row in rows],
@@ -62,33 +67,35 @@ def print_result(format, rows=[], header=[], count=0, page=1, heading=False,
         print(json_result)
 
 
-def readableMemoryFormat(size):
+def readable_memory_format(size):
+    """ Converts int memory to formatted value """
     if size == 0:
         return '0B'
     size_name = ("KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
     i = int(math.floor(math.log(size, 1024)))
-    p = math.pow(1024, i)
-    s = round(size/p, 2)
-    return '%s %s' % (s, size_name[i])
+    power = math.pow(1024, i)
+    formatted_size = round(size/power, 2)
+    return f'{formatted_size} {size_name[i]}'
 
 
 class CondAction(argparse.Action):
     """ A custom argparse action to support required arguments """
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
-        x = kwargs.pop('to_be_required', [])
-        super(CondAction, self).__init__(option_strings, dest, **kwargs)
-        self.make_required = x
+        arg = kwargs.pop('to_be_required', [])
+        super().__init__(option_strings, dest, **kwargs)
+        self.make_required = arg
 
+    #pylint: disable=inconsistent-return-statements
     def __call__(self, parser, namespace, values, option_string=None):
         if values in self.make_required:
             config = Config()
             options_required = self.make_required[values]
-            for x in options_required:
-                if not config.get(x.dest):
-                    x.required = True
+            for opt in options_required:
+                if not config.get(opt.dest):
+                    opt.required = True
         try:
             setattr(namespace, self.dest, values)
-            return super(CondAction, self).__call__(parser, namespace, values,
+            return super().__call__(parser, namespace, values,
                                                     option_string)
         except NotImplementedError:
             pass

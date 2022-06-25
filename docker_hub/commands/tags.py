@@ -5,7 +5,7 @@ Processing of tags command
 import dateutil.parser
 
 from ..consts import PER_PAGE
-from ..libs.utils import readableMemoryFormat, print_result
+from ..libs.utils import readable_memory_format, print_result
 from ..libs.config import Config
 
 
@@ -41,7 +41,7 @@ def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
                     formatted_date = formatted_date.strftime("%Y-%m-%d %H:%M")
                 # Convert full_size in bytes to KB
                 size_in_kb = repo['full_size'] / 1024
-                formatted_size = readableMemoryFormat(size_in_kb)
+                formatted_size = readable_memory_format(size_in_kb)
                 rows.append([repo['name'], formatted_size, formatted_date])
             header = ['Name', 'Size', 'Last updated']
             print_result(args.format, rows, header, resp['content']['count'],
