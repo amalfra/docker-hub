@@ -5,7 +5,7 @@ Process login command
 from ..libs.utils import user_input
 
 
-def run(docker_hub_client):
+def run(docker_hub_client, _args):
     """ The command to do Docker Hub login """
     username = None
     password = None
