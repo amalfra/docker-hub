@@ -55,7 +55,7 @@ def print_result(fmt, rows=None, header=None, count=0, page=1, heading=False,
         if count == 0:
             print(zero_result_msg)
         else:
-            total_pages = int(((count - 1)/PER_PAGE) + 1)
+            total_pages = int(((count - 1) / PER_PAGE) + 1)
             if heading:
                 print_header(heading)
             else:
@@ -74,13 +74,14 @@ def readable_memory_format(size):
     size_name = ("KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
     i = int(math.floor(math.log(size, 1024)))
     power = math.pow(1024, i)
-    formatted_size = round(size/power, 2)
+    formatted_size = round(size / power, 2)
     return f'{formatted_size} {size_name[i]}'
 
 
 #pylint: disable=too-few-public-methods
 class CondAction(argparse.Action):
     """ A custom argparse action to support required arguments """
+
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
         arg = kwargs.pop('to_be_required', [])
         super().__init__(option_strings, dest, **kwargs)
@@ -97,6 +98,11 @@ class CondAction(argparse.Action):
         try:
             setattr(namespace, self.dest, values)
             return super().__call__(parser, namespace, values,
-                                                    option_string)
+                                    option_string)
         except NotImplementedError:
             pass
+
+
+def digest_to_short(digest):
+    """ Convert long digest to short """
+    return digest.split(':')[1][:12] if digest.startswith('sha256:') else digest
