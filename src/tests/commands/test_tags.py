@@ -5,10 +5,10 @@ Tests tags command
 import json
 from collections import namedtuple
 
-from src.commands.tags import run
+from src.commands.tags import run, formatted_image_info
 from ..docker_hub_client import \
-    NoResultsTestingDockerHubClient, WithResultsTestingDockerHubClient
-from ..helpers import convert_key_to_result_format, generate_results
+    NoResultsTestingDockerHubClient, WithTagsResultsTestingDockerHubClient
+from ..helpers import convert_key_to_result_format, generate_tag_results
 
 
 Args = namedtuple('args', 'orgname reponame page format all_pages')
@@ -46,7 +46,7 @@ def test_no_tags_and_all_pages(capsys):
 
 def test_with_tags(capsys):
     """ When there are tags returned by API """
-    docker_hub_client = WithResultsTestingDockerHubClient(12)
+    docker_hub_client = WithTagsResultsTestingDockerHubClient(12)
     run(
         docker_hub_client,
         Args(
@@ -54,20 +54,25 @@ def test_with_tags(capsys):
             all_pages=False
         )
     )
-    results = generate_results(12)
+    results = generate_tag_results(12)
     formatted_results = convert_key_to_result_format(results, {
         'last_updated': 'Last updated',
         'name': 'Name',
         'full_size': 'Size'
     })
+    headers = ['Images platform', 'Image size', 'Images digest']
+    for i, repo in enumerate(results):
+        formatted_results[i]['Digest'] = repo['digest'] or 'N/A'
+        for k, v in enumerate(formatted_image_info(repo)):
+            formatted_results[i][headers[k]] = v
 
     captured = capsys.readouterr()
     assert json.loads(captured.out) == formatted_results
 
 
 def test_with_tags_and_all_pages(capsys):
-    """ When all_pageas applied there are tags returned by API """
-    docker_hub_client = WithResultsTestingDockerHubClient(200)
+    """ When all_pages applied there are tags returned by API """
+    docker_hub_client = WithTagsResultsTestingDockerHubClient(200)
     run(
         docker_hub_client,
         Args(
@@ -75,12 +80,17 @@ def test_with_tags_and_all_pages(capsys):
             all_pages=True
         )
     )
-    results = generate_results(200)
+    results = generate_tag_results(200)
     formatted_results = convert_key_to_result_format(results, {
         'last_updated': 'Last updated',
         'name': 'Name',
         'full_size': 'Size'
     })
+    headers = ['Images platform', 'Image size', 'Images digest']
+    for i, repo in enumerate(results):
+        formatted_results[i]['Digest'] = repo['digest'] or 'N/A'
+        for k, v in enumerate(formatted_image_info(repo)):
+            formatted_results[i][headers[k]] = v
 
     captured = capsys.readouterr()
-    assert json.loads(captured.out) == formatted_results
+    assert json.loads(captured.out) == formatted_results 

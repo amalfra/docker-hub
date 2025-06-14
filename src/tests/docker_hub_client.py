@@ -3,7 +3,7 @@
 Tests for Dockerhub API client
 """
 from src.libs.docker_hub_client import DockerHubClient
-from .helpers import generate_results
+from .helpers import generate_results, generate_tag_results
 
 
 class BaseTestingDockerHubClient(DockerHubClient):
@@ -25,14 +25,14 @@ class NoResultsUsersTestingDockerHubClient(BaseTestingDockerHubClient):
     def do_request(self, url, method='GET', data=None):
         return {'content': None, 'code': 404}
 
-class WithResultsTestingDockerHubClient(BaseTestingDockerHubClient):
+class WithTagsResultsTestingDockerHubClient(BaseTestingDockerHubClient):
     """ When API returns results """
     def __init__(self, results_count=1):
         super().__init__()
         self.results_count = results_count
 
     def do_request(self, url, method='GET', data=None):
-        content = {'count': 1, 'results': generate_results(self.results_count)}
+        content = {'count': 1, 'results': generate_tag_results(self.results_count)}
         if 'login' in url:
             content = self._fake_login()
         return {'content': content, 'code': 200}
