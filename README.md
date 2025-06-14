@@ -15,7 +15,7 @@ You should have pip installed in your system.
 ```sh
 pip install docker-hub
 ```
-If you have Python 2 also in the system do:
+If you have Pip 3 also in the system do:
 ```sh
 pip3 install docker-hub
 ```
