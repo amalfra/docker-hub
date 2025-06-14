@@ -63,8 +63,8 @@ def test_with_tags(capsys):
     headers = ['Images platform', 'Image size', 'Images digest']
     for i, repo in enumerate(results):
         formatted_results[i]['Digest'] = repo['digest'] or 'N/A'
-        for k, v in enumerate(formatted_image_info(repo)):
-            formatted_results[i][headers[k]] = v
+        for key, val in enumerate(formatted_image_info(repo)):
+            formatted_results[i][headers[key]] = val
 
     captured = capsys.readouterr()
     assert json.loads(captured.out) == formatted_results
@@ -89,8 +89,8 @@ def test_with_tags_and_all_pages(capsys):
     headers = ['Images platform', 'Image size', 'Images digest']
     for i, repo in enumerate(results):
         formatted_results[i]['Digest'] = repo['digest'] or 'N/A'
-        for k, v in enumerate(formatted_image_info(repo)):
-            formatted_results[i][headers[k]] = v
+        for key, val in enumerate(formatted_image_info(repo)):
+            formatted_results[i][headers[key]] = val
 
     captured = capsys.readouterr()
-    assert json.loads(captured.out) == formatted_results 
+    assert json.loads(captured.out) == formatted_results

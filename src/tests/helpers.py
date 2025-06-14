@@ -29,16 +29,16 @@ def generate_tag_results(count=1):
             'last_updated': '2018-12-12 14:40',
             'name': f'1.4.2-alpine-{itr + 1}',
             'full_size': 15820065 + itr,
-            'digest': '1b835e5a8d5db58e8b718850bf43a68ef5a576fc68301fd08a789b20b4eecb61',
+            'digest': '1234',
             'images': [
                 {
                     'architecture': 'linux/386',
                     'features': '',
                     'variant': '',
-                    'digest': '1b835e5a8d5db58e8b718850bf43a68ef5a576fc68301fd08a789b20b4eecb61',
+                    'digest': '1234',
                     'layers': [
                         {
-                            'digest': '1b835e5a8d5db58e8b718850bf43a68ef5a576fc68301fd08a789b20b4eecb61',
+                            'digest': '1234',
                             'size': 0,
                             'instruction': ''
                         }
