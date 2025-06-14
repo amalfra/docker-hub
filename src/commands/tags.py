@@ -24,6 +24,24 @@ def run(docker_hub_client, args):
         get_tags(docker_hub_client, orgname, args)
 
 
+def formatted_image_info(repo):
+    """ Return image meta info from response JSON """
+    images_platform = []
+    images_size = []
+    images_digest = []
+    if 'images' in repo:
+        for image in repo['images']:
+            images_platform.append(
+                f"os:{image['os']}-({image['os_version'] or 'N/A'}" \
+                f") arch:{image['architecture']}"
+            )
+            images_size.append(readable_memory_format(
+                image['size'] / 1024))
+            images_digest.append(digest_to_short(image['digest']))
+
+    return "\n".join(images_platform), "\n".join(images_size), "\n".join(images_digest)
+
+
 #pylint: disable=inconsistent-return-statements
 def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
     """ Fetch tags of repository """
@@ -46,25 +64,11 @@ def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
                 else:
                     digest = 'N/A'
 
-                # images
-                images_platform = []
-                images_size = []
-                images_digest = []
-                if 'images' in repo:
-                    for image in repo['images']:
-                        images_platform.append("os:%s-(%s) arch:%s" % (
-                            image['os'], image['os_version'] or 'N/A',
-                            image['architecture']))
-                        images_size.append(readable_memory_format(
-                            image['size'] / 1024))
-                        images_digest.append(digest_to_short(image['digest']))
-
                 # Convert full_size in bytes to KB
                 size_in_kb = repo['full_size'] / 1024
                 formatted_size = readable_memory_format(size_in_kb)
                 rows.append([repo['name'], formatted_size, formatted_date, digest_to_short(digest),
-                             "\n".join(images_platform), "\n".join(images_size),
-                             "\n".join(images_digest)])
+                             *formatted_image_info(repo)])
             header = ['Name', 'Size', 'Last updated', 'Digest', 'Images platform',
                       'Image size', 'Images digest']
             print_result(args.format, rows, header, resp['content']['count'],
