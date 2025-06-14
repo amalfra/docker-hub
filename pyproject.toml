@@ -1,3 +1,6 @@
 [build-system]
 requires = ["setuptools", "pytest-runner"]
 build-backend = "setuptools.build_meta"
+
+[tool.pylint.main]
+max-positional-arguments = 15
