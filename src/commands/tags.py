@@ -65,8 +65,8 @@ def get_tags(docker_hub_client, orgname, args, per_page=PER_PAGE):
                 rows.append([repo['name'], formatted_size, formatted_date, digest_to_short(digest),
                              "\n".join(images_platform), "\n".join(images_size),
                              "\n".join(images_digest)])
-            header = ['Name', 'Size', 'Last updated', 'Digest', "Images Platform",
-                      "Image Size", "Images Digest"]
+            header = ['Name', 'Size', 'Last updated', 'Digest', 'Images platform',
+                      'Image size', 'Images digest']
             print_result(args.format, rows, header, resp['content']['count'],
                          args.page)
             total_pages = int(((resp['content']['count'] - 1) / per_page) + 1)
