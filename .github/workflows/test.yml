@@ -4,7 +4,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13', '3.14', '3.15', '3.16']
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,8 +22,18 @@ jobs:
         run: pylint ./src
       - name: Test
         run: coverage run --source=src -m pytest
-      - name: After success
-        if: ${{ success() }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls --service=github
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel: true
+          parallel-finished: false
+
+  coveralls-finish:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Finish Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
